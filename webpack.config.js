@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // /. usage
 
@@ -8,6 +9,8 @@ const devMode = mode === 'development'
 
 const target = devMode ? 'web' : 'browserslist'
 const devtool = devMode ? 'source-map' : undefined // find errors
+
+// /. variables
 
 module.exports = {
   mode,
@@ -24,6 +27,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
     }),
+    new MiniCssExtractPlugin({
+      filename: 'style.[contenthash].css',
+    }),
   ],
   // plugins
   module: {
@@ -31,6 +37,14 @@ module.exports = {
       {
         test: /\.html$/i, // $ - end of string
         loader: 'html-loader',
+      },
+      {
+        test: /\.(c|sa|sc)ss$/i,
+        use: [
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader, // add styles in html like separate file for prod mode
+          'css-loader',
+          'sass-loader',
+        ],
       },
     ],
   },
