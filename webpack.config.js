@@ -19,38 +19,48 @@ module.exports = {
   devServer: {
     port: 1337,
     open: true, // automatically open in new browser tab
-    hot: true, // refresh styles without page reload (might be lagged)
+    hot: true // refresh styles without page reload (might be lagged)
   },
-  entry: path.resolve(__dirname, 'src', 'index.js'), // __dirname - full pathway (not include current file)
+  entry: ['@babel/polyfill', path.resolve(__dirname, 'src', 'index.js')], // __dirname - full pathway (not include current file)
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.[contenthash].js', // [contenthash] - generate piece of name by hash
-    clean: true, // delete prev output path
+    clean: true // delete prev output path
   },
   // plugins
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'index.html'),
+      template: path.resolve(__dirname, 'src', 'index.html')
     }),
     new MiniCssExtractPlugin({
-      filename: 'style.[contenthash].css',
-    }),
+      filename: 'style.[contenthash].css'
+    })
   ],
   // plugins
   module: {
     rules: [
       {
         test: /\.html$/i, // $ - end of string
-        loader: 'html-loader',
+        loader: 'html-loader'
       },
       {
         test: /\.(c|sa|sc)ss$/i,
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader, // add styles in html like separate file for prod mode
           'css-loader',
-          'sass-loader',
-        ],
+          'sass-loader'
+        ]
       },
-    ],
-  },
+      {
+        test: /\.m?js$/i,
+        exclude: /(node_modules|bower_components)/, // not to process these files by babel
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
+    ]
+  }
 }
