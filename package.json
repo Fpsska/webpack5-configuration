@@ -6,7 +6,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build:dev": "set NODE_ENV=development&&webpack",
-    "build:prod": "react-scripts build"
+    "build:prod": "set NODE_ENV=production&&webpack"
   },
   "keywords": [],
   "author": "Fpsska",
