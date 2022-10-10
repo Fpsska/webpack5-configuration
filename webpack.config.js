@@ -16,6 +16,11 @@ module.exports = {
   mode,
   target,
   devtool,
+  devServer: {
+    port: 1337,
+    open: true, // automatically open in new browser tab
+    hot: true, // refresh styles without page reload (might be lagged)
+  },
   entry: path.resolve(__dirname, 'src', 'index.js'), // __dirname - full pathway (not include current file)
   output: {
     path: path.resolve(__dirname, 'dist'),
