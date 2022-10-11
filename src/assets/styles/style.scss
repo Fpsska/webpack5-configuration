@@ -1,6 +1,7 @@
-@import '../styles/reset';
+@import './reset';
 @import '../libs/normalize';
-@import '../styles/vars';
+@import './vars';
+@import './fonts';
 
 // /. imports
 
@@ -15,7 +16,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: $primary-color;
-    font-family: 'Gilroy-Medium', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     overflow-x: hidden;
 }

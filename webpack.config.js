@@ -60,6 +60,14 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
+      },
+      {
+        test: /\.(woff|woff2)$/i, // alternative /\.woff2?$/i
+        type: 'asset/resource',
+        generator: {
+          // create subfolder when building
+          filename: 'fonts/[name][ext]'
+        }
       }
     ]
   }
