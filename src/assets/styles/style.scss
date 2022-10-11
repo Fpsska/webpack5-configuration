@@ -8,7 +8,7 @@
 html,
 body {
     font-size: $font-size;
-    height: 100%;
+    min-height: 100%;
     scroll-behavior: smooth;
 }
 
@@ -19,4 +19,44 @@ body {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     overflow-x: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+main {
+    :not(:last-child) {
+        margin-bottom: 10px;
+    }
+}
+
+.background-img {
+    width: 500px;
+    height: 400px;
+    background-image: url(../images/image-2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.image-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 500px;
+    height: 400px;
+}
+
+.image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    max-width: 100%;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
 }

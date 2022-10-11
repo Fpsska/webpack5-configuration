@@ -25,6 +25,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.[contenthash].js', // [contenthash] - generate piece of name by hash
+    assetModuleFilename: 'assets/[name][ext]', // general directory for all assets
     clean: true // delete prev output path
   },
   // plugins
@@ -65,8 +66,15 @@ module.exports = {
         test: /\.(woff|woff2)$/i, // alternative /\.woff2?$/i
         type: 'asset/resource',
         generator: {
-          // create subfolder when building
-          filename: 'fonts/[name][ext]'
+          // create custom subfolder when building (ignore output assetModuleFilename option)
+          filename: 'assets/fonts/[name][ext]'
+        }
+      },
+      {
+        test: /\.(jpe?g|png|webp|gif|svg)$/i, // jpe?g -> jpg || jpeg (e literal is optional)
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/images/[name][ext]'
         }
       }
     ]
