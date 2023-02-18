@@ -1,17 +1,17 @@
 export const getUsers = async () => {
-  try {
-    const id = 1
-    const URL = `https://jsonplaceholder.typicode.com/users/${id}`
+    try {
+        const id = 1;
+        const URL = `https://jsonplaceholder.typicode.com/users/${id}`;
 
-    const response = await fetch(URL)
+        const response = await fetch(URL);
 
-    if (!response.ok) {
-      throw new Error('some erorr with response')
+        if (!response.ok) {
+            throw new Error('some erorr with response');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (err) {
+        console.error(err.message || err);
     }
-
-    const data = await response.json()
-    return data
-  } catch (err) {
-    console.error(err.message || err)
-  }
-}
+};
